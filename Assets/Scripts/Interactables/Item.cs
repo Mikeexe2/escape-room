@@ -34,18 +34,14 @@ public class Item : MonoBehaviour
             Debug.Log("Item inactive");
 
         } else {
-
-            // make item disappear from room
-
-
             active = true;
-            // border.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
             border.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
             Debug.Log("Item active");
         }
     }
 
     public void useItem(){
+        // remove item from inventory
         Debug.Log("TODO");
     }
 }

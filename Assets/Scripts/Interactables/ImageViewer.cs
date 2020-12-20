@@ -10,6 +10,9 @@ public class ImageViewer : Interactable
     public override void interact(){
         //put image up
         Game.Instance.ivCanvas.AddItem(pic);
+
+        //remove item
+        Destroy(this.gameObject);
     }
 
 }

@@ -10,6 +10,8 @@ public class Game : Singleton<Game>
     // [HideInInspector]
     public Node currNode;
 
+    public Node endNode;
+
     public CameraRig rig;
 
     public ObsCamera obsCamera;
@@ -43,6 +45,12 @@ public class Game : Singleton<Game>
         currNode.GetComponent<Prop>().interactable.enabled = false;
         currNode.Arrive();
         enableArrows();
+    }
+
+    public void endGame(){
+        endNode.Arrive();
+        currNode.downButton.SetActive(false);
+        Debug.Log("Game over");
     }
 
     // void Update() {

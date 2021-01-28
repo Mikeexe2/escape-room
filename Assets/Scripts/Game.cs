@@ -19,12 +19,31 @@ public class Game : Singleton<Game>
 
     public GameObject closeObserverButton;
 
+    [HideInInspector]
+    public int keyNum;
+
+    [HideInInspector]
+    public string theKey;
+
+    public List<ImageViewer> keys;
+
     // public Button downButton;
+
+    public void getRandomKeyNum(){
+
+        int numKeys = keys.Count;
+        
+        System.Random randomNumGen = new System.Random();
+        this.keyNum = randomNumGen.Next(numKeys);
+        this.theKey = this.keys[this.keyNum].pic.name;
+        Debug.Log(this.theKey);
+    }
 
     void Start() {
         startNode.Arrive();
         obsCamera.gameObject.SetActive(false);
         closeObserverButton.SetActive(false);
+        getRandomKeyNum();
     }
 
     public void disableArrows(){        
@@ -50,7 +69,10 @@ public class Game : Singleton<Game>
     public void endGame(){
         endNode.Arrive();
         currNode.downButton.SetActive(false);
+        currNode.rightButton.SetActive(false);
+        currNode.leftButton.SetActive(false);
         Debug.Log("Game over");
+        Destroy(ivCanvas.gameObject);
     }
 
     // void Update() {

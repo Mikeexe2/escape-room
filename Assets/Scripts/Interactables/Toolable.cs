@@ -9,14 +9,18 @@ public class Toolable : Interactable
     [HideInInspector]
     public Collider collider;
 
-    public Item key;
+    public List<Item> keylist;
     
     public override void interact(){
 
         // get key!
+        string keyname = Game.Instance.theKey;
 
-        if (key.active) {
-            Game.Instance.endGame();
+        for (int i=0; i<keylist.Count; i++){
+            Item item = keylist[i];
+            if (item.imageHolder.sprite != null && item.imageHolder.sprite.name == keyname && item.active){
+                Game.Instance.endGame();
+            }
         }
     }
 

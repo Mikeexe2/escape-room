@@ -23,13 +23,13 @@ public class Moveable : Interactable
         if (active == true){
             active = false;
             currTransform.position = restingState.position;
-            Debug.Log("Item inactive");
+            currTransform.rotation = restingState.rotation;
 
         } else {
 
             active = true;
             currTransform.position = activeState.position;
-            Debug.Log("Item active");
+            currTransform.rotation = activeState.rotation;
         }
     }
 

@@ -12,31 +12,41 @@ public class Item : MonoBehaviour
 
     public IVCanvas iV;
 
+    public bool isKey = false;
+
     public void setImg(Sprite pic){
-        Debug.Log("Setting image");
         imageHolder.sprite = pic;
+        if (pic.name.Contains("key")){
+            this.isKey = true;
+        }
     }
 
     private bool isOtherSelected(){
         foreach(Item item in iV.imageHolders){
             if (item.active){
+                item.deselectItem();
                 return true;
             }
         }
         return false;
     }
+
+    public void deselectItem(){
+        active = false;
+        border.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }
     
     public void selectItem(){
 
-        if (isOtherSelected() || active == true){
-            active = false;
-            border.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-            Debug.Log("Item inactive");
+        if (active == true){
+            deselectItem();
 
+        } else if (isOtherSelected()){
+            active = true;
+            border.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
         } else {
             active = true;
             border.transform.localScale = new Vector3(1.2f, 1.2f, 1.0f);
-            Debug.Log("Item active");
         }
     }
 
